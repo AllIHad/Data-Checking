@@ -50,7 +50,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect('/dashboard')->with('success', 'account successfully registered');
+        return redirect('/')->with('success', 'account successfully registered');
     }
 
     public function logout()
