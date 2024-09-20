@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -71,7 +72,7 @@
                     </div>
                 </div>
             </li>
-            
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -83,10 +84,10 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data - Data :</h6>
-                        <a class="collapse-item" href="{{ route('dataPengguna') }}" >Data Pengguna</a>
-                        <a class="collapse-item" href="{{ route('dataBarang') }}">Katagori Barang</a>
+                        <a class="collapse-item" href="{{ route('dataPengguna') }}">Data Pengguna</a>
+                        <a class="collapse-item" href="{{ route('kategoriBarang') }}">Katagori Barang</a>
                         <a class="collapse-item" href="{{ route('dataSupplier') }}">Data Supplier</a>
-                        <a class="collapse-item" href="{{ route('dataBarang') }}" >Data Barang</a>
+                        <a class="collapse-item" href="{{ route('dataBarang') }}">Data Barang</a>
                     </div>
                 </div>
             </li>
@@ -236,6 +237,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 </body>
 
 </html>

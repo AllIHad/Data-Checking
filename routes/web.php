@@ -13,3 +13,4 @@ Route::get('/dashboard', [DashbordController::class, 'index'])->name('dashboard'
 Route::get('/data-pengguna', [DashbordController::class, 'dataPengguna'])->name('dataPengguna');
 Route::get('/data-barang', [DashbordController::class, 'dataBarang'])->name('dataBarang');
 Route::get('/data-supplier', [DashbordController::class, 'dataSupplier'])->name('dataSupplier');
+Route::get('/kategori-barang', [DashbordController::class, 'kategoriBarang'])->name('kategoriBarang');
