@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_supplier');
             $table->string('alamat');
             $table->string('telepon');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

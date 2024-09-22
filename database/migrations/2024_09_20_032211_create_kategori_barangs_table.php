@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_kategori_barang');
             $table->string('kategori_barang');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

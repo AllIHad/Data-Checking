@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('harga_beli');
             $table->integer('harga_jual');
             $table->string('nama_produk');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

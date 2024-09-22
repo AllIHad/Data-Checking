@@ -31,11 +31,39 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
+            'id_admin' => 'ADM0001',
+            'nama_admin' => 'admin',
+            'jenis_kelamin' => 'laki-laki',
+            'alamat' => 'sugai bahar',
+            'no_hp' => '2342134234',
+            'email' => 'admin@mail.com',
+            'username' => 'admin',
+            'password' => Hash::make('admin'),
+            'level' => 'admin',
+        ]);
+
+        User::create([
+            'id_admin' => 'ADM20240813055932749',
+            'nama_admin' => 'In esse sit mollitia',
+            'jenis_kelamin' => 'perempuan',
+            'alamat' => 'In cupiditate consec',
+            'no_hp' => '1232435234',
+            'email' => 'pemilik@mailinator.com',
             'username' => 'pemilik',
-            'nama' => 'Pemilik',
-            'nama' => 'Pemilik',
             'password' => Hash::make('pemilik'),
-            'role' => '1',
+            'level' => 'pemilik',
+        ]);
+
+        User::create([
+            'id_admin' => 'tt',
+            'nama_admin' => 'tt kasir gg',
+            'jenis_kelamin' => 'laki-laki',
+            'alamat' => 'tt',
+            'no_hp' => '32432',
+            'email' => 'tt@mail.com',
+            'username' => 'kasir',
+            'password' => Hash::make('kasir'),
+            'level' => 'kasir',
         ]);
 
         KategoriBarang::create([
