@@ -45,6 +45,7 @@
                                     @method('put')
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </form>
+                                <a href="{{ route('editDataBarang', $barang->id_produk) }}" class="btn btn-sm btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             </td>
                             @endif
                         </tr>

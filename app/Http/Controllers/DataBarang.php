@@ -35,12 +35,12 @@ class DataBarang extends Controller
     {
         $request->validate([
             'id_produk' => 'required',
-            'rak' => 'required',
+            'rak' => 'required|integer',
             'id_kategori_barang' => 'required',
             'id_supplier' => 'required',
-            'stok' => 'required',
-            'harga_beli' => 'required',
-            'harga_jual' => 'required',
+            'stok' => 'required|integer',
+            'harga_beli' => 'required|integer',
+            'harga_jual' => 'required|integer',
             'nama_produk' => 'required',
         ]);
 
@@ -57,5 +57,44 @@ class DataBarang extends Controller
         ]);
 
         return redirect('/data-barang')->with('success', 'Data Barang created');
+    }
+
+    public function editDataBarang($slug)
+    {
+        $dataBarang = DataProduk::where('id_produk', $slug)->firstOrFail();
+
+        return view('form.dataBarangForm', [
+            'dataBarang' => $dataBarang,
+        ]);
+    }
+
+    public function editedDataBarang($slug, Request $request)
+    {
+        $dataBarang = DataProduk::where('id_produk', $slug)->firstOrFail();
+
+        $request->validate([
+            'id_produk' => 'required',
+            'rak' => 'required|integer',
+            'id_kategori_barang' => 'required',
+            'id_supplier' => 'required',
+            'stok' => 'required|integer',
+            'harga_beli' => 'required|integer',
+            'harga_jual' => 'required|integer',
+            'nama_produk' => 'required',
+        ]);
+
+        $dataBarang->update([
+            'id_produk' => $request->id_produk,
+            'rak' => $request->rak,
+            'id_kategori_barang' => $request->id_kategori_barang,
+            'id_supplier' => $request->id_supplier,
+            'stok' => $request->stok,
+            'harga_beli' => $request->harga_beli,
+            'harga_jual' => $request->harga_jual,
+            'nama_produk' => $request->nama_produk,
+            'status' => 'Persetujuan Edit Data Barang',
+        ]);
+
+        return redirect('/data-barang')->with('success', 'Data Has Updated');
     }
 }

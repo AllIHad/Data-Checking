@@ -7,6 +7,7 @@ use App\Models\DataSuplier;
 use App\Models\KategoriBarang;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class DashbordController extends Controller
 {
@@ -40,6 +41,7 @@ class DashbordController extends Controller
             [
                 'Persetujuan Pembuatan Kategori Barang',
                 'Persetujuan Penghapusan Kategori Barang',
+                'Persetujuan Edit Kategori Barang',
             ]
         )->get();
 
@@ -48,6 +50,7 @@ class DashbordController extends Controller
             [
                 'Persetujuan Pembuatan Data Barang',
                 'Persetujuan Penghapusan Data Barang',
+                'Persetujuan Edit Data Barang',
             ]
         )->get();
 
@@ -56,6 +59,7 @@ class DashbordController extends Controller
             [
                 'Persetujuan Pembuatan Data Supplier',
                 'Persetujuan Penghapusan Data Supplier',
+                'Persetujuan Edit Data Supplier',
             ]
         )->get();
         // dd($kategoriBarang);
@@ -96,5 +100,26 @@ class DashbordController extends Controller
         ]);
 
         return redirect('/kategori-barang')->with('success', 'Kategori Barang created');
+    }
+    
+    public function editKategoriBarang($slug){
+        $kategoriBarang = KategoriBarang::where('id_kategori_barang', $slug)->firstOrFail();
+        
+        return view('form.kategoriBarangForm', [
+            'kategoriBarang' => $kategoriBarang
+        ]);
+    }
+
+    public function editedKategoriBarang($slug, Request $request)
+    {
+        $kategoriBarang = KategoriBarang::where('id_kategori_barang', $slug)->firstOrFail();
+
+        $kategoriBarang->update([
+            'id_kategori_barang' => $request->id_kategori_barang,
+            'kategori_barang' => $request->kategori_barang,
+            'status' => 'Persetujuan Edit Kategori Barang',
+        ]);
+
+        return redirect('/kategori-barang')->with('success', 'Data Has Updated');
     }
 }

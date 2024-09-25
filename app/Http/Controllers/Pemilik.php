@@ -45,6 +45,16 @@ class Pemilik extends Controller
         return redirect('/waitings')->with('success', 'Pemilik Approved To Delete Kategori Barang');
     }
 
+    public function approvalEditKategoriBarang($slug) {
+        $kategoriBarang = KategoriBarang::where('id_kategori_barang', $slug)->firstOrFail();
+
+        $kategoriBarang->update([
+            'status' => null,
+        ]);
+
+        return redirect('/waitings')->with('success', 'Pemilik Approved To Edit Kategori Barang');
+    }
+
     // Data Barang
     public function approvalDataBarang($slug)
     {
@@ -81,6 +91,16 @@ class Pemilik extends Controller
         return redirect('/waitings')->with('success', 'Pemilik Approved To Delete Data Barang');
     }
 
+    public function approvalEditDataBarang($slug) {
+        $dataBarang = DataProduk::where('id_produk', $slug)->firstOrFail();
+
+        $dataBarang->update([
+            'status' => null,
+        ]);
+
+        return redirect('/waitings')->with('success', 'Pemilik Approved To Edit Data Barang');
+    }
+
     //Data Supplier
     public function approvalDataSupplier($slug)
     {
@@ -115,5 +135,15 @@ class Pemilik extends Controller
         $dataSupplier->save();
 
         return redirect('/waitings')->with('success', 'Pemilik Approved To Delete Data Supplier');
+    }
+
+    public function approvalEditDataSupplier($slug){
+        $dataSupplier = DataSuplier::where('id_supplier', $slug)->firstOrFail();
+
+        $dataSupplier->update([
+            'status' => null,
+        ]);
+
+        return redirect('/waitings')->with('success', 'Pemilik Approved To Edit Data Supplier');
     }
 }

@@ -25,6 +25,8 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        <!-- Kategori Barang -->
                         @foreach($kategoriBarang as $kBarang)
                         <tr>
                             <td>Kategori Barang</td>
@@ -44,7 +46,7 @@
                                     @method('delete')
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                                 </form>
-                                @else
+                                @elseif($kBarang->status === 'Persetujuan Penghapusan Kategori Barang')
                                 <form action="{{ route('approvalDeleteKategoriBarang', $kBarang->id_kategori_barang) }}" method="post" class="pr-4">
                                     @csrf
                                     @method('delete')
@@ -55,12 +57,19 @@
                                     @method('put')
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                                 </form>
+                                @else
+                                <form action="{{ route('approvalEditKategoriBarang', $kBarang->id_kategori_barang) }}" method="post" class="">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                </form>
                                 @endif
                             </td>
                             @endif
                         </tr>
                         @endforeach
 
+                        <!-- Data Barang -->
                         @foreach($dataBarang as $dBarang)
                         <tr>
                             <td>Data Barang</td>
@@ -75,21 +84,27 @@
                                     @method('put')
                                     <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                                 </form>
-                                <form action="{{ route('refusalDataBarang', $dBarang->id_produk) }}" method="post" class="pr-4">
+                                <form action="{{ route('refusalDataBarang', $dBarang->id_produk) }}" method="post" class="">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                                 </form>
-                                @else
+                                @elseif($dBarang->status === 'Persetujuan Penghapusan Data Barang')
                                 <form action="{{ route('approvalDeleteDataBarang', $dBarang->id_produk) }}" method="post" class="pr-4">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                                 </form>
-                                <form action="{{ route('refusalDeleteDataBarang', $dBarang->id_produk) }}" method="post" class="pr-4">
+                                <form action="{{ route('refusalDeleteDataBarang', $dBarang->id_produk) }}" method="post" class="">
                                     @csrf
                                     @method('put')
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </form>
+                                @else
+                                <form action="{{ route('approvalEditDataBarang', $dBarang->id_produk) }}" method="post" class="">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                                 </form>
                                 @endif
                             </td>
@@ -97,6 +112,7 @@
                         </tr>
                         @endforeach
 
+                        <!-- Data Supplier -->
                         @foreach($dataSupplier as $dSupplier)
                         <tr>
                             <td>Data Supplier</td>
@@ -111,21 +127,27 @@
                                     @method('put')
                                     <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                                 </form>
-                                <form action="{{ route('refusalDataSupplier', $dSupplier->id_supplier) }}" method="post" class="pr-4">
+                                <form action="{{ route('refusalDataSupplier', $dSupplier->id_supplier) }}" method="post" class="">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                                 </form>
-                                @else
+                                @elseif ($dSupplier->status === 'Persetujuan Penghapusan Data Supplier')
                                 <form action="{{ route('approvalDeleteDataSupplier', $dSupplier->id_supplier) }}" method="post" class="pr-4">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                                 </form>
-                                <form action="{{ route('refusalDeleteDataSupplier', $dSupplier->id_supplier) }}" method="post" class="pr-4">
+                                <form action="{{ route('refusalDeleteDataSupplier', $dSupplier->id_supplier) }}" method="post" class="">
                                     @csrf
                                     @method('put')
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </form>
+                                @else
+                                <form action="{{ route('approvalEditDataSupplier', $dSupplier->id_supplier) }}" method="post" class="">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                                 </form>
                                 @endif
                             </td>

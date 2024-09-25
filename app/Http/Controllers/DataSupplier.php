@@ -51,4 +51,26 @@ class DataSupplier extends Controller
 
         return redirect('/data-supplier')->with('success', 'Data Supplier created');
     }
+
+    public function editDataSupplier($slug){
+        $dataSupplier = DataSuplier::where('id_supplier', $slug)->firstOrFail();
+
+        return view('form.dataSupplierForm',[
+            'dataSupplier' => $dataSupplier
+        ]);
+    }
+
+    public function editedDataSupplier($slug, Request $request){
+        $dataSupplier = DataSuplier::where('id_supplier', $slug)->firstOrFail();
+
+        $dataSupplier->update([
+            'id_supplier' => $request->id_supplier,
+            'nama_supplier' => $request->nama_supplier,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
+            'status' => 'Persetujuan Edit Data Supplier'
+        ]);
+
+        return redirect('/data-supplier')->with('success', 'Data Has Updated');
+    }
 }
