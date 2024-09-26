@@ -38,7 +38,7 @@
                             @if(Auth::user()->level === 'admin')
                             <td class="d-flex justify-content-center">
                                 <form action="/admin/destroyDataSupplier/{{$supplier->id_supplier}}" method="post" class="pr-4">
-                                    @method('delete')
+                                    @method('put')
                                     @csrf
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </form>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataProduk;
 use App\Models\DataSuplier;
 use App\Models\KategoriBarang;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class Pemilik extends Controller
@@ -145,5 +146,41 @@ class Pemilik extends Controller
         ]);
 
         return redirect('/waitings')->with('success', 'Pemilik Approved To Edit Data Supplier');
+    }
+
+    // Data Pengguna
+    public function approvalDataPengguna($slug)
+    {
+        $dataPengguna = User::where('id_admin', $slug)->firstOrFail();
+
+        $dataPengguna->status = NULL;
+        $dataPengguna->save();
+
+        return redirect('/waitings')->with('success', 'Pemilik Approved Data Pengguna');
+    }
+
+    public function refusalDataPengguna($slug)
+    {
+        $dataPengguna = User::where('id_admin', $slug)->firstOrFail();
+        $dataPengguna->delete();
+
+        return redirect('/waitings')->with('success', 'Pemilik Approved Data Pengguna');
+    }
+
+    public function approvalDeleteDataPengguna($slug)
+    {
+        $dataPengguna = User::where('id_admin', $slug)->firstOrFail();
+        $dataPengguna->delete();
+
+        return redirect('/waitings')->with('success', 'Pemilik Approved To Delete Data Pengguna');
+    }
+
+    public function refusalDeleteDataPengguna($slug)
+    {
+        $dataPengguna = User::where('id_admin', $slug)->firstOrFail();
+        $dataPengguna->status = NULL;
+        $dataPengguna->save();
+
+        return redirect('/waitings')->with('success', 'Pemilik Approved To Delete Data Pengguna');
     }
 }

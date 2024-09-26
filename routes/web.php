@@ -8,20 +8,23 @@ use App\Http\Controllers\Pemilik;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
-    
+    Route::put('/destroyDataPengguna/{slug}', [DashbordController::class, 'destroyDataPengguna'])->name('destroyDataPengguna');
+    Route::get('/data-pengguna-create', [DashbordController::class, 'formDataPengguna'])->name('createDataPengguna');
+    Route::post('/createdDataPengguna', [DashbordController::class, 'dataPenggunaCreated'])->name('dataPenggunaCreated');
+
     Route::put('/kategori-barang-delete/{slug}', [DashbordController::class, 'kategoriBarangDelete'])->name('kategoriBarangDelete');
     Route::get('/kategori-barang-create', [DashbordController::class, 'formKategoriBarang'])->name('createKategoriBarang');
     Route::post('/createdKategoriBarang', [DashbordController::class, 'kategoriBarangCreated'])->name('kategoriBarangCreated');
     Route::get('/editKategoriBarang/{slug}', [DashbordController::class, 'editKategoriBarang'])->name('editKategoriBarang');
     Route::post('/editedKategoriBarang/{slug}', [DashbordController::class, 'editedKategoriBarang'])->name('editedKategoriBarang');
-    
+
     Route::put('/data-barang-delete/{slug}', [DataBarang::class, 'dataBarangDelete'])->name('dataBarangDelete');
     Route::get('/data-barang-create', [DataBarang::class, 'formDataBarang'])->name('createDataBarang');
     Route::post('/createdDataBarang', [DataBarang::class, 'dataBarangCreated'])->name('dataBarangCreated');
     Route::get('/editDataBarang/{slug}', [DataBarang::class, 'editDataBarang'])->name('editDataBarang');
     Route::post('/editedDataBarang/{slug}', [DataBarang::class, 'editedDataBarang'])->name('editedDataBarang');
-    
-    Route::delete('/destroyDataSupplier/{slug}', [DataSupplier::class, 'destroy']);
+
+    Route::put('/destroyDataSupplier/{slug}', [DataSupplier::class, 'destroy']);
     Route::get('/data-supplier-create', [DataSupplier::class, 'formDataSupplier'])->name('createDataSupplier');
     Route::post('/createdDataSupplier', [DataSupplier::class, 'dataSupplierCreated'])->name('dataSupplierCreated');
     Route::get('/editDataSupplier/{slug}', [DataSupplier::class, 'editDataSupplier'])->name('editDataSupplier');
@@ -29,6 +32,11 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('pemilik')->group(function () {
+    Route::put('/approvalDataPengguna/{slug}', [Pemilik::class, 'approvalDataPengguna'])->name('approvalDataPengguna');
+    Route::delete('/refusalDataPengguna/{slug}', [Pemilik::class, 'refusalDataPengguna'])->name('refusalDataPengguna');
+    Route::put('/refusalDeleteDataPengguna/{slug}', [Pemilik::class, 'refusalDeleteDataPengguna'])->name('refusalDeleteDataPengguna');
+    Route::delete('/aprovalDeleteDataPengguna/{slug}', [Pemilik::class, 'approvalDeleteDataPengguna'])->name('approvalDeleteDataPengguna');
+
     Route::put('/approvalKategoriBarang/{slug}', [Pemilik::class, 'approvalKategoriBarang'])->name('approvalKategoriBarang');
     Route::delete('/refusalKategoriBarang/{slug}', [Pemilik::class, 'refusalKategoriBarang'])->name('refusalKategoriBarang');
     Route::put('/refusalDeleteKategoriBarang/{slug}', [Pemilik::class, 'refusalDeleteKategoriBarang'])->name('refusalDeleteKategoriBarang');
@@ -49,13 +57,16 @@ Route::prefix('pemilik')->group(function () {
 });
 
 Route::get('/', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register/create', [AuthController::class, 'create'])->name('register.create');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::get('/dashboard', [DashbordController::class, 'index'])->name('dashboard');
 Route::get('/data-pengguna', [DashbordController::class, 'dataPengguna'])->name('dataPengguna');
 Route::get('/data-barang', [DataBarang::class, 'dataBarang'])->name('dataBarang');
 Route::get('/data-supplier', [DataSupplier::class, 'dataSupplier'])->name('dataSupplier');
 Route::get('/kategori-barang', [DashbordController::class, 'kategoriBarang'])->name('kategoriBarang');
 Route::get('/waitings', [DashbordController::class, 'waitings'])->name('waitings');
+Route::get('/profile', [DashbordController::class, 'profile'])->name('profile');
+Route::put('/editProfile/{slug}', [DashbordController::class, 'editProfile'])->name('editProfile');

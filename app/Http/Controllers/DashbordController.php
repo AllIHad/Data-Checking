@@ -7,7 +7,9 @@ use App\Models\DataSuplier;
 use App\Models\KategoriBarang;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
+use PDO;
 
 class DashbordController extends Controller
 {
@@ -18,7 +20,7 @@ class DashbordController extends Controller
 
     public function dataPengguna()
     {
-        $dataPengguna = User::all();
+        $dataPengguna = User::where('status', '=', Null)->get();
 
         return view('dashboard.dataPengguna', [
             'dataPengguna' => $dataPengguna
@@ -62,12 +64,21 @@ class DashbordController extends Controller
                 'Persetujuan Edit Data Supplier',
             ]
         )->get();
-        // dd($kategoriBarang);
+
+        $dataUser = User::whereIn(
+            'status',
+            [
+                'Persetujuan Pembuatan Data Pengguna',
+                'Persetujuan Penghapusan Data Pengguna'
+            ]
+        )->get();
+        // dd($dataUser);
 
         return view('modification.index', [
             'kategoriBarang' => $kategoriBarang,
             'dataBarang' => $dataBarang,
-            'dataSupplier' => $dataSupplier
+            'dataSupplier' => $dataSupplier,
+            'dataUser' => $dataUser
         ]);
     }
 
@@ -101,10 +112,11 @@ class DashbordController extends Controller
 
         return redirect('/kategori-barang')->with('success', 'Kategori Barang created');
     }
-    
-    public function editKategoriBarang($slug){
+
+    public function editKategoriBarang($slug)
+    {
         $kategoriBarang = KategoriBarang::where('id_kategori_barang', $slug)->firstOrFail();
-        
+
         return view('form.kategoriBarangForm', [
             'kategoriBarang' => $kategoriBarang
         ]);
@@ -121,5 +133,84 @@ class DashbordController extends Controller
         ]);
 
         return redirect('/kategori-barang')->with('success', 'Data Has Updated');
+    }
+
+    public function profile()
+    {
+
+        return view('form.profileForm');
+    }
+
+    public function editProfile($slug, Request $request)
+    {
+        $dataUser = User::where('id_admin', $slug)->firstOrFail();
+
+        $request->validate([
+            'id_admin' => 'required',
+            'nama_admin' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $dataUser->update([
+            'id_admin' => $request->id_admin,
+            'nama_admin' => $request->nama_admin,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'email' => $request->email,
+        ]);
+
+
+        return redirect('/dashboard')->with('success', 'Data Has Updated');
+    }
+
+    public function destroyDataPengguna($slug)
+    {
+        $dataUser = User::where('id_admin', $slug)->firstOrFail();
+
+        $dataUser->update([
+            'status' => 'Persetujuan Penghapusan Data Pengguna',
+        ]);
+
+        return redirect('/data-pengguna')->with('success', 'Data Has Updated');
+    }
+
+    public function formDataPengguna()
+    {
+
+        return view('form.dataPenggunaForm');
+    }
+
+    public function dataPenggunaCreated(Request $request)
+    {
+        $request->validate([
+            'id_admin' => 'required',
+            'nama_admin' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+            'email' => 'required|email',
+            'username' => 'required',
+            'password' => 'required|confirmed',
+            'level' => 'required',
+        ]);
+        // dd($request->all());
+        User::create([
+            'id_admin' => $request->id_admin,
+            'nama_admin' => $request->nama_admin,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'level' => $request->level,
+            'status' => 'Persetujuan Pembuatan Data Pengguna',
+        ]);
+
+        return redirect('/data-pengguna')->with('success', 'Data Pengguna created');
     }
 }

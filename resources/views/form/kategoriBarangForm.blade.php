@@ -9,18 +9,24 @@
                     <div class="form-group ">
                         <div class="col-md-12">
                             <label class="fw-bolder">Kategori Barang ID</label>
-                            <input id="fname" name="id_kategori_barang" type="text" placeholder="Kategori Barang ID"
+                            <input id="fname" name="id_kategori_barang" type="text"
                                 value="{{ old('id_kategori_barang', isset($kategoriBarang) ? $kategoriBarang->id_kategori_barang : '')}}"
                                 class="form-control @error('id_kategori_barang') is-invalid @enderror">
+                                @error('id_kategori_barang')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-12">
                             <label class="fw-bolder">Kategori Barang</label>
-                            <input id="lname" name="kategori_barang" type="text" placeholder="Kategori Barang"
+                            <input id="lname" name="kategori_barang" type="text"
                                 value="{{ old('kategori_barang', isset($kategoriBarang) ? $kategoriBarang->kategori_barang : '')}}"
                                 class="form-control @error('kategori_barang') is-invalid @enderror">
+                                @error('kategori_barang')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 

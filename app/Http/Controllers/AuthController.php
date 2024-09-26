@@ -22,7 +22,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($validate)) {
+        if (Auth::attempt($validate) && Auth::user()->status === null) {
             return redirect('/dashboard')->with('success', 'Authentication successful');
         };
 

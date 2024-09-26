@@ -15,10 +15,10 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Jenis Barang</th>
-                            <th>ID Barang</th>
-                            <th>Nama Barang</th>
-                            <th>Status</th>
+                            <th>Jenis Data</th>
+                            <th>ID Data</th>
+                            <th>Nama Data</th>
+                            <th>Status Data</th>
                             @if(Auth::user()->level === 'pemilik')
                             <th>Action</th>
                             @endif
@@ -148,6 +148,43 @@
                                     @csrf
                                     @method('put')
                                     <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                </form>
+                                @endif
+                            </td>
+                            @endif
+                        </tr>
+                        @endforeach
+
+                        <!-- Data Pengguna -->
+                        @foreach($dataUser as $dPengguna)
+                        <tr>
+                            <td>Data Pengguna</td>
+                            <td>{{ $dPengguna->id_admin }}</td>
+                            <td>{{ $dPengguna->nama_admin }}</td>
+                            <td>{{ $dPengguna->status }}</td>
+                            @if(Auth::user()->level === 'pemilik')
+                            <td class="d-flex justify-content-center">
+                                @if($dPengguna->status === 'Persetujuan Pembuatan Data Pengguna')
+                                <form action="{{ route('approvalDataPengguna', $dPengguna->id_admin) }}" method="post" class="pr-4">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                </form>
+                                <form action="{{ route('refusalDataPengguna', $dPengguna->id_admin) }}" method="post" class="">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </form>
+                                @else
+                                <form action="{{ route('approvalDeleteDataPengguna', $dPengguna->id_admin) }}" method="post" class="pr-4">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                </form>
+                                <form action="{{ route('refusalDeleteDataPengguna', $dPengguna->id_admin) }}" method="post" class="">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                                 </form>
                                 @endif
                             </td>
