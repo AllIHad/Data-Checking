@@ -7,7 +7,7 @@ use App\Http\Controllers\DataSupplier;
 use App\Http\Controllers\Pemilik;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {  
     Route::put('/destroyDataPengguna/{slug}', [DashbordController::class, 'destroyDataPengguna'])->name('destroyDataPengguna');
     Route::get('/data-pengguna-create', [DashbordController::class, 'formDataPengguna'])->name('createDataPengguna');
     Route::post('/createdDataPengguna', [DashbordController::class, 'dataPenggunaCreated'])->name('dataPenggunaCreated');

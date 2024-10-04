@@ -16,4 +16,6 @@ class DataSuplier extends Model
         'telepon',
         'status',
     ];
+
+    protected $table = 'data_supplier';
 }

@@ -20,4 +20,6 @@ class DataProduk extends Model
         'nama_produk',
         'status'
     ];
+
+    protected $table = 'data_produk';
 }

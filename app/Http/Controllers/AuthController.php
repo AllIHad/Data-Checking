@@ -23,6 +23,10 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($validate) && Auth::user()->status === null) {
+
+            $request->session()->all();
+            // dd(Auth::guard('data_admin')->user()->nama_admin);
+
             return redirect('/dashboard')->with('success', 'Authentication successful');
         };
 

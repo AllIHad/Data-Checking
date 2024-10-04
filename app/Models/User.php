@@ -39,6 +39,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $table = 'data_admin';
+
     /**
      * Get the attributes that should be cast.
      *

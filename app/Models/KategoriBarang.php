@@ -14,4 +14,6 @@ class KategoriBarang extends Model
         'kategori_barang',
         'status'
     ];
+
+    protected $table = 'data_katagori_barang';
 }

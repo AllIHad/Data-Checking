@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_supplier', function (Blueprint $table) {
+        Schema::create('data_admin', function (Blueprint $table) {
             $table->id();
-            $table->string('id_supplier');
-            $table->string('nama_supplier');
+            $table->string('id_admin');
+            $table->string('nama_admin');
+            $table->enum('jenis_kelamin', ['Perempuan','Laki-Laki']);
             $table->string('alamat');
-            $table->string('telepon');
+            $table->string('no_hp');
+            $table->string('email');
+            $table->string('username');
+            $table->string('password');
+            $table->enum('level',['admin','pemilik','kasir']);
             $table->string('status')->nullable();
             $table->timestamps();
         });
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_supplier');
+        Schema::dropIfExists('data_admin');
     }
 };
