@@ -38,7 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Content Data<sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -68,8 +68,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Waiting Data :</h6>
-                        <a class="collapse-item" href="{{ route('waitings') }}">Waiting For Approval</a>
+                        <h6 class="collapse-header">Overall Data :</h6>
+                        <a class="collapse-item" href="{{ route('waitings') }}">Data</a>
                     </div>
                 </div>
             </li>
@@ -85,10 +85,11 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data - Data :</h6>
-                        <a class="collapse-item" href="{{ route('dataPengguna') }}">Data Pengguna</a>
-                        <a class="collapse-item" href="{{ route('kategoriBarang') }}">Katagori Barang</a>
-                        <a class="collapse-item" href="{{ route('dataSupplier') }}">Data Supplier</a>
-                        <a class="collapse-item" href="{{ route('dataBarang') }}">Data Barang</a>
+                        <a class="collapse-item" href="{{ route('dataPengguna') }}">Data Yuli</a>
+                        <a class="collapse-item" href="{{ route('kategoriBarang') }}">Data Rani</a>
+                        <a class="collapse-item" href="{{ route('dataSupplier') }}">Data Aji</a>
+                        <a class="collapse-item" href="{{ route('dataBarang') }}">Data Jijul</a>
+                        <a class="collapse-item" href="{{ route('dataBarang') }}">Data Ibad</a>
                     </div>
                 </div>
             </li>
