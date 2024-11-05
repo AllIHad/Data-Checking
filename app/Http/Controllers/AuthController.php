@@ -27,7 +27,7 @@ class AuthController extends Controller
             $request->session()->all();
             // dd(Auth::guard('data_admin')->user()->nama_admin);
 
-            return redirect('/dashboard')->with('success', 'Authentication successful');
+            return redirect('/waitings')->with('success', 'Authentication successful');
         };
 
         return back()->with('error', 'Authentication failed');

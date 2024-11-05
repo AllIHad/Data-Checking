@@ -11,18 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_admin', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->id();
-            $table->string('id_admin');
-            $table->string('nama_admin');
-            $table->enum('jenis_kelamin', ['Perempuan','Laki-Laki']);
-            $table->string('alamat');
-            $table->string('no_hp');
             $table->string('email');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('password');
-            $table->enum('level',['admin','pemilik','kasir']);
-            $table->string('status')->nullable();
+            $table->string('role');
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_admin');
+        Schema::dropIfExists('user');
     }
 };

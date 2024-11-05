@@ -40,17 +40,6 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">Content Data<sup>2</sup></div>
             </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -69,7 +58,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Overall Data :</h6>
-                        <a class="collapse-item" href="{{ route('waitings') }}">Data</a>
+                        <a class="collapse-item" href="{{ route('waitings') }}">Data Keseluruhan</a>
                     </div>
                 </div>
             </li>
@@ -85,11 +74,11 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data - Data :</h6>
-                        <a class="collapse-item" href="{{ route('dataPengguna') }}">Data Yuli</a>
-                        <a class="collapse-item" href="{{ route('kategoriBarang') }}">Data Rani</a>
-                        <a class="collapse-item" href="{{ route('dataSupplier') }}">Data Aji</a>
-                        <a class="collapse-item" href="{{ route('dataBarang') }}">Data Jijul</a>
-                        <a class="collapse-item" href="{{ route('dataBarang') }}">Data Ibad</a>
+                        <a class="collapse-item" href="{{ route('dataYuli') }}">Data Yuli</a>
+                        <a class="collapse-item" href="{{ route('dataRani') }}">Data Rani</a>
+                        <a class="collapse-item" href="{{ route('dataAji') }}">Data Aji</a>
+                        <a class="collapse-item" href="{{ route('dataJijul') }}">Data Jijul</a>
+                        <a class="collapse-item" href="{{ route('dataIbad') }}">Data Ibad</a>
                     </div>
                 </div>
             </li>
@@ -150,7 +139,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->nama_admin }} </span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->username}} </span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
